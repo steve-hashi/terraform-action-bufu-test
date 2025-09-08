@@ -9,7 +9,7 @@ terraform {
 resource "terraform_data" "test" {
   lifecycle {
     action_trigger {
-      events  = [after_create]
+      events  = [before_create, on_create, after_create]
       actions = [action.bufo_print.success]
     }
   }

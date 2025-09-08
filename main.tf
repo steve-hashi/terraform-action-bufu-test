@@ -10,14 +10,20 @@ resource "terraform_data" "test" {
   lifecycle {
     action_trigger {
       events  = [before_create, after_create]
-      actions = [action.bufo_print.success]
+      actions = [action.bufo_print.awesome, action.bufo_print.bigeyes]
     }
   }
 }
 
-action "bufo_print" "success" {
+action "bufo_print" "awesome" {
   config {
-    # random colorized bufo
-    color = true
+    name = "awesomebufo"
   }
 }
+
+action "bufo_print" "bigeyes" {
+  config {
+    name= "bufo-big-eyes-stare"
+  }
+}
+

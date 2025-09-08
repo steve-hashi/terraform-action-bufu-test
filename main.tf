@@ -1,34 +1,23 @@
 terraform {
   required_providers {
-    external = {
-      source = "registry.terraform.io/hashicorp/external"
+    bufo = {
+      source = "austinvalle/bufo"
     }
   }
 }
 
-resource "terraform_data" "fake_resource" {
-  input = "fake-string"
-
+resource "terraform_data" "test" {
   lifecycle {
     action_trigger {
-     events  = [before_create]
-     actions = [action.external.test_before]
-    }
-    action_trigger {
       events  = [after_create]
-      actions = [action.external.test_after]
+      actions = [action.bufo_print.success]
     }
   }
 }
 
-action "external" "test_before" {
+action "bufo_print" "success" {
   config {
-    program = ["echo", "Before!"]
-  }
-}
-
-action "external" "test_after" {
-  config {
-    program = ["echo", "After!"]
+    # random colorized bufo
+    color = true
   }
 }

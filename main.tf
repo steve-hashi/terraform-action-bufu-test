@@ -5,7 +5,7 @@ terraform {
     }
   }
 }
-
+/*
 resource "terraform_data" "test-all" {
   count = 3
   lifecycle {
@@ -15,7 +15,7 @@ resource "terraform_data" "test-all" {
       actions = [action.bufo_print.awesome, action.bufo_print.bigeyes]
     }
   }
-}
+} */
 
 resource "terraform_data" "test-all-separate" {
   count = 3

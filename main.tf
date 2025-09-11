@@ -5,13 +5,13 @@ terraform {
     }
   }
 }
+
 /*
 resource "terraform_data" "test-all" {
-  count = 3
+//  count = 3
   lifecycle {
     action_trigger {
       events  = [before_create, after_create, before_update, after_update]
-#      events  = [before_create, after_create, before_update, after_update, before_destroy, after_destroy]
       actions = [action.bufo_print.awesome, action.bufo_print.bigeyes]
     }
   }
@@ -19,6 +19,9 @@ resource "terraform_data" "test-all" {
 
 resource "terraform_data" "test-all-separate" {
   count = 3
+
+  input = "bufu-test-${count.index}"
+
   lifecycle {
     action_trigger {
       events  = [before_create]
@@ -28,10 +31,6 @@ resource "terraform_data" "test-all-separate" {
       events  = [before_update]
       actions = [action.bufo_print.awesome]
     }
-/*    action_trigger {
-      events  = [before_destroy]
-      actions = [action.bufo_print.awesome]
-    } */
     action_trigger {
       events  = [after_create]
       actions = [action.bufo_print.bigeyes]
@@ -40,10 +39,6 @@ resource "terraform_data" "test-all-separate" {
       events  = [after_update]
       actions = [action.bufo_print.bigeyes]
     }
-/*    action_trigger {
-      events  = [after_destroy]
-      actions = [action.bufo_print.bigeyes]
-    } */
   }
 }
 
